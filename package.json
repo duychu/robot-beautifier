@@ -1,23 +1,39 @@
 {
-  "name": "robot-beautifier",
+	"name": "robot-beautifier",
 	"displayName": "Robot Beautifier",
 	"description": "robotframework formatter",
 	"version": "0.0.1",
+	"publisher": "duychu",
+	"license": "MIT",
+	"icon": "logo.png",
 	"engines": {
 		"vscode": "^1.55.0"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Formatters"
 	],
 	"activationEvents": [
-        "onCommand:robot-beautifier.helloWorld"
+		"onCommand:robot-beautifier.about",
+		"onLanguage:robot"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "robot-beautifier.helloWorld",
-				"title": "Hello World"
+				"command": "robot-beautifier.about",
+				"title": "Robot Beautifier > Format Robot File"
+			}
+		],
+		"languages": [
+			{
+				"id": "robot",
+				"aliases": [
+					"robot"
+				],
+				"extensions": [
+					"robot"
+				]
 			}
 		]
 	},
@@ -28,6 +44,10 @@
 		"pretest": "yarn run compile && yarn run lint",
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/duychu/robot-beautifier.git"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.55.0",

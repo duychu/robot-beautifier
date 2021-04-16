@@ -1,9 +1,14 @@
 # Change Log
 
-All notable changes to the "robot-beautifier" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.1]
 
-## [Unreleased]
+- Initial release which support format .robot file
+- Unlike other formatter, we consider section of robot file and will not format '*** Comments ***' section
 
-- Initial release
+# Credit
+
+Thanks to implementation of KMS-ONLINE and tumit
+
+- https://github.com/KMK-ONLINE/vscode-robotExtension
+- https://github.com/tumit/vscode-rf-formatter
