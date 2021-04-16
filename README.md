@@ -1,7 +1,5 @@
 # robot-beautifier README
 
-This is the README for your extension "robot-beautifier".
-
 ## Features
 
 Robot Framework extension formatter
@@ -42,7 +40,7 @@ Ensure that you've read through the extensions guidelines and follow the best pr
 
 ### For more information
 
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+- [Visual Studio Code's Markdown Support](https://code.visualstudio.com/docs/languages/markdown)
 - [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
