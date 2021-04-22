@@ -22,6 +22,10 @@ This extension contributes the following settings:
 
 Initial release
 
+### 0.0.2
+
+- Update static themes without SemanticToken for Robot Framework
+
 ---
 
 ## Following extension guidelines
