@@ -2,7 +2,7 @@
 	"name": "robot-beautifier",
 	"displayName": "Robot Beautifier",
 	"description": "robotframework formatter",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "duychu",
 	"license": "MIT",
 	"icon": "logo.png",
@@ -11,8 +11,7 @@
 	},
 	"categories": [
 		"Formatters",
-		"Programming Languages",
-		"Themes"
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"onCommand:robot-beautifier.about",
@@ -30,7 +29,7 @@
 			{
 				"id": "robot",
 				"aliases": [
-					"robot"
+					"Robot Framework"
 				],
 				"extensions": [
 					"robot",
@@ -38,7 +37,7 @@
 				],
 				"configuration": "./language-configuration.json",
 				"configurationDefaults": {
-					"[languageId]": {
+					"robot": {
 						"editor.semanticHighlighting.enabled": true
 					}
 				}
@@ -48,16 +47,12 @@
 			{
 				"language": "robot",
 				"scopeName": "source.robot",
-				"path": "./syntaxes/robot.tmLanguage.json"
+				"path": "./syntaxes/robot.tmLanguage.json",
+				"embeddedLanguages": {
+					"meta.table.comments.robot": "markdown"
+				}
 			}
-		],
-        "themes": [
-            {
-                "label": "robot-theme",
-                "uiTheme": "vs-dark",
-                "path": "./themes/robot-theme-color-theme.json"
-            }
-        ]
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",

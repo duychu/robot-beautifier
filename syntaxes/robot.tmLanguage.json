@@ -381,7 +381,7 @@
                     "name": "entity.name.type.class.robot"
                 }
             },
-            "contentName": "comment.line.robot",
+            "contentName": "comment.docs.line.robot",
             "name": "meta.table.comments.robot"
         },
         "variables": {

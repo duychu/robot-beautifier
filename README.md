@@ -24,7 +24,7 @@ Initial release
 
 ### 0.0.2
 
-- Update static themes without SemanticToken for Robot Framework
+- add textmate for robotframework source code, prepare for LSP implement
 
 ---
 
