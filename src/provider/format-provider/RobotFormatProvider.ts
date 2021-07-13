@@ -31,9 +31,14 @@ type SectionRange = {
     stop: number
 };
 
+type SectionNoFormat = {
+    lines: number[]
+};
+
 type SectionDocument = {
     type: SectionType,
-    range: SectionRange
+    range: SectionRange,
+    noFormat: SectionNoFormat
 };
 
 function multiplyString(base: string, times: number): string {
@@ -79,19 +84,15 @@ export class RobotFormatProvider implements DocumentFormattingEditProvider {
 
     //Split Section
     private static splitDocumentToSections(document: TextDocument): SectionDocument[] {
+        let noFormatFlag: boolean = false;
         let sections: SectionDocument[] = [];
-        let currentSection: SectionDocument = {
-            type: SectionType.Undefined,
-            range: {
-                start: 0,
-                stop: 0
-            }
-        };
+
         for (let i = 0; i < document.lineCount; i++) {
             let type: SectionType = SectionType.Undefined;
             let isNewSection: boolean = false;
             const line = document.lineAt(i).text;
-            if (sections.length === 0) { 
+
+            if (sections.length === 0) {
                 isNewSection = true;
                 type = SectionType.Undefined;
             } else if (/^(\*+)(\s+)?(Settings|Setting)(\s+)?(\*+)/.test(line)) {
@@ -112,17 +113,34 @@ export class RobotFormatProvider implements DocumentFormattingEditProvider {
             }
 
             if (isNewSection) {
+                noFormatFlag = false;
+            }
+
+            if ((/^(\s+)?#(\s+)?fmt: off/).test(line)) {
+                noFormatFlag = true;
+            } else if ((/^(\s+)?#(\s+)?fmt: on/).test(line)) {
+                noFormatFlag = false;
+            }
+
+            if (isNewSection) {
                 let currentSection: SectionDocument = {
                     type: type,
                     range: {
                         start: i,
                         stop: i
+                    },
+                    noFormat: {
+                        lines: []
                     }
                 };
                 sections.push(currentSection);
             } else {
                 sections[sections.length - 1].range.stop = i;
+                if (noFormatFlag === true) {
+                    sections[sections.length - 1].noFormat.lines.push(i);
+                }
             }
+
         }
         return sections;
     }
@@ -135,8 +153,15 @@ export class RobotFormatProvider implements DocumentFormattingEditProvider {
      */
     private static isFormatable(lineIndex: number, sections: SectionDocument[]): boolean {
         for (let index = 0; index < sections.length; index++) {
+            // if it is comment
             if (sections[index].type === SectionType.Comments) {
-                if (sections[index].range.start <= lineIndex && sections[index].range.stop >= lineIndex)  {
+                if (sections[index].range.start <= lineIndex && sections[index].range.stop >= lineIndex) {
+                    return false;
+                }
+            }
+            // or it is wrapped by fmt: off/on block
+            else {
+                if (sections[index].noFormat.lines.indexOf(lineIndex) !== -1) {
                     return false;
                 }
             }

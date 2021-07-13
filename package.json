@@ -2,7 +2,7 @@
 	"name": "robot-beautifier",
 	"displayName": "Robot Beautifier",
 	"description": "robotframework formatter",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "duychu",
 	"license": "MIT",
 	"icon": "logo.png",

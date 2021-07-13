@@ -8,7 +8,17 @@
 
 ### [0.0.2]
 
-- add textmate for robotframework source code, prepare for LSP implement
+- broken version
+
+### [0.0.3]
+
+- broken version
+
+
+### [0.0.4]
+
+- add fmt: off/on flag to enable/disable format
+
 
 # Credit
 
